@@ -332,18 +332,3 @@ Give this repo a star ⭐ and share with others!
 
 
 ---
-
-🔥 If you want next-level upgrade:
-
-I can also help you:
-
-Turn this into a live portfolio website (React + GitHub Pages)
-
-Add incident diagrams & architecture visuals
-
-Tailor it for FAANG / top-tier tech support roles
-
-Add real log samples + advanced debugging (Wireshark, tcpdump)
-
-
-Just tell me 👍
