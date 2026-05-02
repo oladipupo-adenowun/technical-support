@@ -318,7 +318,7 @@ Use as a reference for incident response
 
 📬 Contact
 
-🌐 Portfolio: https://oladipupo-adenowun.github.io/portfolio/
+🌐 Portfolio: https://oladipupo-adenowun.github.io/technical-support/
 
 💼 Open to Technical Support / DevOps / SRE roles
 
