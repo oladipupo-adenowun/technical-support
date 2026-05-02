@@ -41,6 +41,7 @@ Performance Optimization
 
 Incident Documentation
 
+<img width="1041" height="3630" alt="17777579030013310545323598735670" src="https://github.com/user-attachments/assets/75495fb7-bf25-4f38-9f7a-c9884a98999e" />
 
 
 ---
