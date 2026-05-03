@@ -115,14 +115,11 @@ tcp.analysis.retransmission
 Key Finding
 TCP retransmissions at ISP hop → packet loss confirmed
 
-<img width="3020" height="305" alt="image" src="https://github.com/user-attachments/assets/1aa3c96a-365c-4923-b812-fab2deb319c8" />
-
-
-
 
 ---
 
 🔎 Case Study 2: API Integration Failure
+
 🏗️ Architecture
 <img width="3022" height="305" alt="17777586363733826015636078011728" src="https://github.com/user-attachments/assets/5c0d073c-3464-405e-a34a-2fd9abcbc90f" />
 
