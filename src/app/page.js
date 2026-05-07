@@ -14,7 +14,7 @@ const cases = [
     time: "42 minutes",
     desc: "Diagnosed packet loss using traceroute and tcpdump.",
     deepDive: true,
-    video: "/media/Network-Issue/Network-Connectivity-Issue.mp4",
+    video: "https://www.youtube.com/embed/PstNNFyv79I",
     logs: [
       "ping example.com",
       "64 bytes from 1.1.1.1: icmp_seq=1 ttl=57 time=120ms",
@@ -203,13 +203,18 @@ function VideoPlayer({ src }) {
   return (
     <div className="mt-6">
       <h3 className="font-semibold mb-2">Explainer Video</h3>
-      <video
+      <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+      <iframe
         src={src}
-        poster="/media/Network-Issue/thumbnail.jpg"
-        controls
-        muted
-        className="w-full rounded-xl border border-gray-700"
+        title="YouTube video player"
+        className="absolute top-0 left-0 w-full h-full rounded-xl border border-gray-700"
+        frameBorder="0"
+        loading="lazy"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
       />
+      </div>
     </div>
   );
 }
