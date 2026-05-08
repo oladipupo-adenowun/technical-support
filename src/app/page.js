@@ -14,7 +14,8 @@ const cases = [
     time: "42 minutes",
     desc: "Diagnosed packet loss using traceroute and tcpdump.",
     deepDive: true,
-    video: "https://www.youtube.com/embed/PstNNFyv79I",
+    video: "/media/Network-Connectivity-Issue.mp4",
+    poster: "/media/Network-Connectivity-Issue.jpg",
     logs: [
       "ping example.com",
       "64 bytes from 1.1.1.1: icmp_seq=1 ttl=57 time=120ms",
@@ -41,6 +42,9 @@ const cases = [
     impact: "Transaction failures",
     time: "30 minutes",
     desc: "Resolved malformed payload issues.",
+    deepDive:true,
+    video: "/media/API-500-Errors.mp4",
+    poster: "/media/API-500-Errors.jpg",
     logs: [
       "POST /orders 500",
       "Error: Missing field 'currency'",
@@ -65,6 +69,9 @@ const cases = [
     impact: "Slower response times",
     time: "15 minutes",
     desc: "Optimized slow query performance.",
+    deepDive: true,
+    video: "/media/Database-Performance-Issue.mp4",
+    poster: "/media/Database-Performance-Issue.jpg",
     logs: [
       "SELECT * FROM orders WHERE status='pending'",
       "Execution time: 5s",
@@ -89,6 +96,9 @@ const cases = [
     impact: "Transactional emails undelivered",
     time: "25 minutes",
     desc: "Fixed SMTP authentication issues.",
+    deepDive: true,
+    video: "/media/Email-Delivery-Failure.mp4",
+    poster: "/media/Email-Delivery-Failure.jpg",
     logs: [
       "SMTP connection failed: Authentication error",
       "Checked credentials → correct",
@@ -114,6 +124,9 @@ const cases = [
     impact: "Users unable to log in",
     time: "20 minutes",
     desc: "Resolved OAuth token expiration issue.",
+    deepDive: true,
+    video: "/media/Authentication-Failure.mp4",
+    poster: "/media/Authentication-Failure.jpg",
     logs: [
       "User login failed: Invalid token",
       "Checked token service → tokens expired",
@@ -181,38 +194,109 @@ function Timeline({ steps }) {
 }
 
 function DeepDive({ incident }) {
-  return (
-    <div className="mt-6 border-t border-gray-700 pt-4">
-      <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
-      <p className="text-gray-400 text-sm mb-3">
-        Root cause identified as network-level packet loss at ISP hop causing TCP retransmissions and latency spikes.
-      </p>
-      <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
-traceroute example.com
-8  isp-gateway 120ms
-9  * * *
-      </pre>
-      <p className="text-gray-400 text-sm mt-3">
-        Decision: Implement failover routing instead of waiting on ISP resolution.
-      </p>
-    </div>
-  );
+  switch (incident.title) {
+    case "Intermittent Connectivity":
+      return (
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
+          <p className="text-gray-400 text-sm mb-3">
+            Root cause identified as network-level packet loss at ISP hop causing TCP retransmissions and latency spikes.
+          </p>
+          <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
+    traceroute example.com
+    8  isp-gateway 120ms
+    9  * * *
+          </pre>
+          <p className="text-gray-400 text-sm mt-3">
+            Decision: Implement failover routing instead of waiting on ISP resolution.
+          </p>
+        </div>
+      );
+    case "API 500 Errors":
+      return (
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
+          <p className="text-gray-400 text-sm mb-3">
+            Root cause was a malformed API payload missing the 'currency' field, which caused server-side validation to fail and return 500 errors.
+          </p>
+          <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
+            POST /orders HTTP/1.1
+            Host: api.example.com
+            Content-Type: application/json
+              "amount": 100,
+              "description": "Test order"
+          </pre>
+          <p className="text-gray-400 text-sm mt-3">
+            Decision: Added client-side validation to prevent malformed requests from reaching the server.
+          </p>
+        </div>
+      );
+    case "Database Performance Issues":
+      return (
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
+          <p className="text-gray-400 text-sm mb-3">
+            Root cause was a missing index on the 'status' column of the 'orders' table, causing full table scans and high latency for queries filtering by status.
+          </p>
+          <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
+            EXPLAIN SELECT * FROM orders WHERE status='pending';
+            id | select_type | table  | type  | possible_keys | key  | rows  | Extra
+            1  | SIMPLE      | orders | ALL   | NULL          | NULL | 10000 | Using where
+          </pre>
+          <p className="text-gray-400 text-sm mt-3">
+            Decision: Added an index on the 'status' column, which reduced query execution time from 5s to 50ms.
+          </p>
+        </div>
+      );
+    case "Email Delivery Failure":
+      return (
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
+          <p className="text-gray-400 text-sm mb-3">
+            Root cause was an IP block on the SMTP server due to suspected abuse, which caused authentication failures for outgoing emails.
+          </p>
+          <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
+            SMTP connection failed: Authentication error
+            Checked SMTP server logs:
+          </pre>
+          <p className="text-gray-400 text-sm mt-3">
+            Decision: Whitelisted our IP address on the SMTP server to restore email delivery.
+          </p>
+        </div>
+      );
+    case "Authentication Failure":
+      return (
+        <div className="mt-6 border-t border-gray-700 pt-4">
+          <h3 className="text-lg font-semibold mb-2">Deep Dive Analysis</h3>
+          <p className="text-gray-400 text-sm mb-3">
+            Root cause was an expired OAuth token service that caused all authentication attempts to fail until the service was restarted and new tokens were issued.
+          </p>
+          <pre className="bg-black text-green-400 p-3 rounded text-xs overflow-x-auto">
+            User login failed: Invalid token
+            Checked token service → tokens expired
+            Restarted token service → new tokens issued
+          </pre>
+          <p className="text-gray-400 text-sm mt-3">
+            Decision: Implemented monitoring for token expiration to proactively prevent future authentication failures.
+          </p>
+        </div>
+      );
+    default:
+      return null;
+  }
 }
 
-function VideoPlayer({ src }) {
+function VideoPlayer({ src, poster }) {
   return (
     <div className="mt-6">
       <h3 className="font-semibold mb-2">Explainer Video</h3>
       <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-      <iframe
+      <video
         src={src}
-        title="YouTube video player"
-        className="absolute top-0 left-0 w-full h-full rounded-xl border border-gray-700"
-        frameBorder="0"
-        loading="lazy"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
+        poster={poster}
+        muted
+        className="w-full rounded-xl"
+        controls
       />
       </div>
     </div>
@@ -271,7 +355,7 @@ export default function Portfolio() {
               </ul>
             </div>
 
-            {selected.video && <VideoPlayer src={selected.video} />}
+            {selected.video && <VideoPlayer src={selected.video} poster={selected.poster}/>}
 
             {selected.deepDive && <DeepDive incident={selected} />}
 
