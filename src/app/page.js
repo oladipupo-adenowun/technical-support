@@ -14,8 +14,8 @@ const cases = [
     time: "42 minutes",
     desc: "Diagnosed packet loss using traceroute and tcpdump.",
     deepDive: true,
-    video: "/media/Network-Connectivity-Issue.mp4",
-    poster: "/media/Network-Connectivity-Issue.jpg",
+    video: "/media/network-connectivity-issue.mp4",
+    poster: "/media/network-connectivity-issue.jpg",
     logs: [
       "ping example.com",
       "64 bytes from 1.1.1.1: icmp_seq=1 ttl=57 time=120ms",
@@ -43,8 +43,8 @@ const cases = [
     time: "30 minutes",
     desc: "Resolved malformed payload issues.",
     deepDive:true,
-    video: "/media/API-500-Errors.mp4",
-    poster: "/media/API-500-Errors.jpg",
+    video: "/media/api-500-error.mp4",
+    poster: "/media/api-500-error.jpg",
     logs: [
       "POST /orders 500",
       "Error: Missing field 'currency'",
@@ -70,8 +70,8 @@ const cases = [
     time: "15 minutes",
     desc: "Optimized slow query performance.",
     deepDive: true,
-    video: "/media/Database-Performance-Issue.mp4",
-    poster: "/media/Database-Performance-Issue.jpg",
+    video: "/media/database-performance-issue.mp4",
+    poster: "/media/database-performance-issue.jpg",
     logs: [
       "SELECT * FROM orders WHERE status='pending'",
       "Execution time: 5s",
@@ -97,8 +97,8 @@ const cases = [
     time: "25 minutes",
     desc: "Fixed SMTP authentication issues.",
     deepDive: true,
-    video: "/media/Email-Delivery-Failure.mp4",
-    poster: "/media/Email-Delivery-Failure.jpg",
+    video: "/media/email-delivery-failure.mp4",
+    poster: "/media/email-delivery-failure.jpg",
     logs: [
       "SMTP connection failed: Authentication error",
       "Checked credentials → correct",
@@ -125,8 +125,8 @@ const cases = [
     time: "20 minutes",
     desc: "Resolved OAuth token expiration issue.",
     deepDive: true,
-    video: "/media/Authentication-Failure.mp4",
-    poster: "/media/Authentication-Failure.jpg",
+    video: "/media/authentication-failure.mp4",
+    poster: "/media/authentication-failure.jpg",
     logs: [
       "User login failed: Invalid token",
       "Checked token service → tokens expired",
@@ -290,7 +290,7 @@ function VideoPlayer({ src, poster }) {
   return (
     <div className="mt-6">
       <h3 className="font-semibold mb-2">Explainer Video</h3>
-      <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+      <div className="w-full">
       <video
         src={src}
         poster={poster}
@@ -315,6 +315,34 @@ export default function Portfolio() {
         </p>
       </motion.div>
 
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center mb-10">
+      <h4 className="text-2xl font-bold">
+        Production incidents analyzed, resolved, and documented.
+        </h4>
+      </motion.div>
+
+      <div className="bg-gray-900 p-4 rounded-xl mb-10">
+        <h2 className="text-xl font-semibold mb-2">Global Metrics</h2>
+        <div className="flex items-center gap-6">
+         <div>
+            <p className="text-sm text-gray-400">Incident Case Studies</p>
+            <p className="text-lg font-bold">5</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Avg. Resolution Time</p>
+            <p className="text-lg font-bold">26 mins</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Reliability Restored</p>
+            <p className="text-lg font-bold">99.9%</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-400">Diagnostic Tools Used</p>
+            <p className="text-lg font-bold">10+</p>
+          </div>
+        </div>
+      </div>
+      
       <div className="grid md:grid-cols-2 gap-6 mt-10">
         {cases.map((c, i) => (
           <motion.div key={i} whileHover={{ scale: 1.05 }} onClick={() => setSelected(c)}>
